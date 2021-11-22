@@ -1,0 +1,61 @@
+
+<html>
+
+<head>
+
+  <title> Login </title>
+  <style>
+	h3{ text-align: center;}
+	label{ display: block;
+		   text-align: center;
+		   margin: 3px;}
+	body{ background-color:blanchedalmond;}
+	form{justify-content: center;
+	    padding-top: 150px;
+		align-items: center;}	
+	 
+  </style>	
+	
+	
+  
+</head>
+
+<body> 
+	 
+	 
+	 
+		<form name="myform" align = "center" method = "POST" action = 'log.php' onsubmit="return checkForm()">
+		<h3> Please Login </h3>
+		<label> Name     </label><input type = "text" name = "uname" placeholder = "username"></br>
+		<label> Password </label><input type = "password" name = "pass" placeholder = "password"></br></br>
+		<input type="submit" name="submit" value="login" >
+		<a href="registration.html"><i class="fas fa-sign-out-alt"></i>register</a>
+		
+		</form>
+	<script>
+        function checkForm() {
+            let x = document.forms["myform"]["uname"].value;
+           
+            let y = document.forms["myform"]["pass"].value;
+
+            if (x == "") {
+                alert("Please Fill The Name Field!");
+                return false;
+            }
+           
+            else if (y == "") {
+                alert("Please Fill The Password Field!");
+                return false;
+            }
+            return true;
+        }
+    </script>	
+</body>
+		
+
+
+
+
+
+
+</html>

@@ -1,0 +1,67 @@
+<html>
+
+<head>
+
+  <title> Form Validation </title>
+  <style>
+	h3{ text-align: center;}
+	label{ display: block;
+		   text-align: center;
+		   margin: 3px;}
+	body{ background-color:blanchedalmond;} 
+    form{justify-content: center;
+	    padding-top: 150px;
+		align-items: center;}	
+	 
+  </style>	
+	
+	
+  
+</head>
+
+<body> 
+	 
+	 
+	 
+		<form name="myform" align = "center" method = "POST" action = 'reg.php' onsubmit="return checkForm()">
+		<h3> Welcome </h3>
+		<label> Name     </label><input type = "text" name = "uname" placeholder = "username"></br>
+		<label> Password </label><input type = "password" name = "pass" placeholder = "password"></br>
+		<label> Modile </label><input type = "number" name = "mobile" placeholder = "Phone No"></br>
+		<label> Email </label><input type = "email" name = "uemail" placeholder = "email"></br></br>
+		<input type="submit" name="submit" value="sign_in" >
+		</form>
+		<script>
+        function checkForm() {
+            let x = document.forms["myform"]["uname"].value;
+           
+            let y = document.forms["myform"]["pass"].value;
+			
+			let z = document.forms["myform"]["mobile"].value;
+			
+			let w = document.forms["myform"]["uemail"].value;
+
+            if (x == "") {
+                alert("Please Fill The Name Field!");
+                return false;
+            }
+           
+            else if (y == "") {
+                alert("Please Fill The Password Field!");
+                return false;
+            }
+			else if (z == "") {
+                alert("Please Fill The Password Field!");
+                return false;
+            }
+			else if (w == "") {
+                alert("Please Fill The Password Field!");
+                return false;
+            }
+            return true;
+        }
+		</script>	
+		
+</body>
+	
+</html>
