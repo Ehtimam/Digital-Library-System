@@ -1,27 +1,61 @@
 <html>
 
 <title> Start </title>
+<h1> Welcome </h1>
 
-<header align=center> Welcome </header>
-<style>body{background-color:cornsilk;
-padding-top: 200px;}
-*{box-sizing: border-box;
-  	font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, 
-	cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
-  	font-size: 16px;
-  	-webkit-font-smoothing: antialiased;
-  	-moz-osx-font-smoothing: grayscale;}
-	form{justify-content: center;
-	padding-top: 20px;
-	align-items: center;}
-</style>
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #16243d;
+            font-size: 24px;
+            padding: 20px 0 20px 0;
+            border-bottom: 1px solid #e9e17a;
+        }
+        
+        body {
+            background-color: #eef3ec;
+            padding-top: 200px;
+        }
+        
+        form input[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background-color: #3274d6;
+            border: 0;
+            cursor: pointer;
+            font-weight: bold;
+            color: #ffffff;
+            transition: background-color 0.2s;
+        }
+        
+        form input[type="submit"]:hover {
+            background-color: #2868c7;
+            transition: background-color 0.2s;
+        }
+    </style>
 
-<body> 
-<form align = "center" method = "POST" action = 'login.html'>
-<input type="submit" name="submit" value="login" >
-</form>
-<form align = "center" method = "POST" action = 'registration.html'>
-<input type="submit" name="submit" value="register" >
-</form>
+</head>
+
+
+
+
+<body>
+    <form align="center" method="POST" action='login.html'>
+        <input type="submit" name="submit" value="login">
+    </form>
+    <form align="center" method="POST" action='registration.html'>
+        <input type="submit" name="submit" value="register">
+    </form>
 </body>
+
 </html>

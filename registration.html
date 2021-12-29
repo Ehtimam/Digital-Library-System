@@ -2,66 +2,158 @@
 
 <head>
 
-  <title> Form Validation </title>
-  <style>
-	h3{ text-align: center;}
-	label{ display: block;
-		   text-align: center;
-		   margin: 3px;}
-	body{ background-color:blanchedalmond;} 
-    form{justify-content: center;
-	    padding-top: 150px;
-		align-items: center;}	
-	 
-  </style>	
-	
-	
-  
+    <title> Form Validation </title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #202f49;
+            font-size: 24px;
+            padding: 20px 0 20px 0;
+            border-bottom: 1px solid #e9e17a;
+        }
+        
+        body {
+            background-color: #eef3ec;
+        }
+        
+        .reg {
+            width: 400px;
+            background-color: #ffffff;
+            box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+            margin: 100px auto;
+        }
+        
+        .reg h3 {
+            text-align: center;
+            color: #0e1116;
+            font-size: 24px;
+            padding: 20px 0 20px 0;
+            border-bottom: 1px solid #bde701;
+        }
+        
+        .reg form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding-top: 20px;
+        }
+        
+        .reg form label {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            background-color: #1760be;
+            color: #fcfafa;
+        }
+        
+        .reg form input[type="password"],
+        .reg form input[type="text"],
+        .reg form input[type="email"],
+        .reg form input[type="number"] {
+            width: 310px;
+            height: 50px;
+            border: 1px solid #dee0e4;
+            margin-bottom: 20px;
+            padding: 0 15px;
+        }
+        
+        .reg form input[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background-color: #3274d6;
+            border: 0;
+            cursor: pointer;
+            font-weight: bold;
+            color: #ffffff;
+            transition: background-color 0.2s;
+        }
+        
+        .reg form input[type="submit"]:hover {
+            background-color: #2868c7;
+            transition: background-color 0.2s;
+        }
+    </style>
+
+
+
 </head>
 
-<body> 
-	 
-	 
-	 
-		<form name="myform" align = "center" method = "POST" action = 'reg.php' onsubmit="return checkForm()">
-		<h3> Welcome </h3>
-		<label> Name     </label><input type = "text" name = "uname" placeholder = "username"></br>
-		<label> Password </label><input type = "password" name = "pass" placeholder = "password"></br>
-		<label> Modile </label><input type = "number" name = "mobile" placeholder = "Phone No"></br>
-		<label> Email </label><input type = "email" name = "uemail" placeholder = "email"></br></br>
-		<input type="submit" name="submit" value="sign_in" >
-		</form>
-		<script>
+<body>
+    <h1>Digital Library</h1>
+    <div class="reg">
+        <h3> Welcome </h3>
+        <form name="myform" align="center" method="POST" action='reg.php' onsubmit="return checkForm()">
+
+            <label for="username">
+                <i class="fas fa-user"> </i>
+            </label>
+            <input type="text" name="uname" placeholder="Username" id="username" required>
+            <label for="password">
+                <i class='fas fa-lock '> </i>
+            </label>
+            <input type="password" name="pass" placeholder="Password" id="password" required>
+            <label for="phone">
+                <i class='fas fa-mobile-alt'> </i>
+            </label>
+            <input type="number" name="mobile" placeholder="Phone No" id="phone" required>
+            <label for="email">
+                <i class='fas fa-envelope-square'> </i>
+            </label>
+            <input type="email" name="uemail" placeholder="Email" id="email" required>
+            <input type="submit" name="submit" value="sign in">
+
+
+        </form>
+    </div>
+
+    <!-- <form name="myform" align="center" method="POST" action='reg.php' onsubmit="return checkForm()">
+        <h3> Welcome </h3>
+        <label> Name     </label><input type="text" name="uname" placeholder="username"></br>
+        <label> Password </label><input type="password" name="pass" placeholder="password"></br>
+        <label> Modile </label><input type="number" name="mobile" placeholder="Phone No"></br>
+        <label> Email </label><input type="email" name="uemail" placeholder="email"></br>
+        </br>
+        <input type="submit" name="submit" value="sign_in">
+    </form>-->
+    <script>
         function checkForm() {
             let x = document.forms["myform"]["uname"].value;
-           
+
             let y = document.forms["myform"]["pass"].value;
-			
-			let z = document.forms["myform"]["mobile"].value;
-			
-			let w = document.forms["myform"]["uemail"].value;
+
+            let z = document.forms["myform"]["mobile"].value;
+
+            let w = document.forms["myform"]["uemail"].value;
 
             if (x == "") {
                 alert("Please Fill The Name Field!");
                 return false;
-            }
-           
-            else if (y == "") {
+            } else if (y == "") {
                 alert("Please Fill The Password Field!");
                 return false;
-            }
-			else if (z == "") {
+            } else if (z == "") {
                 alert("Please Fill The Password Field!");
                 return false;
-            }
-			else if (w == "") {
+            } else if (w == "") {
                 alert("Please Fill The Password Field!");
                 return false;
             }
             return true;
         }
-		</script>	
-		
+    </script>
+
 </body>
-	
+
 </html>

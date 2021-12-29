@@ -21,7 +21,7 @@ if ($stmt = $db->prepare('SELECT pass FROM reg WHERE name = ?')) {
 		$_SESSION['loggedin'] = TRUE;
 		$_SESSION['name'] = $_POST['uname'];
 		
-		header('Location: Admin.php');
+		header('Location: Member_mainpage.php');
 	} else {
 		echo 'Incorrect username and/or password!';
 	}
