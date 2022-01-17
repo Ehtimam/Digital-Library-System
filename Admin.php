@@ -64,7 +64,7 @@ $stmt->close();
                 border-bottom: 1px solid #131210;
             }
             #content{
-              height: 300px;
+              height: 1000px;
             }
             table,th,td {
 	          	font-size:15px;
@@ -90,10 +90,11 @@ $stmt->close();
         <div class="search" align="right">
             <form>
                 <input type="text" name="search" id="search" placeholder="search">
-                <input type="submit" value="Go" id="go">
+                <input type="submit" value="Go" name="go">
 
             </form>
-        </div>
+
+            
         <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
         
         <table>
@@ -128,7 +129,7 @@ $stmt->close();
               <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a id="page1link" href="#">Add Book</a></li>
-                        <li><a href="#">Update Books</a></li>
+                        <li><a id="page1link1" href="Updatebook.php">Update Books</a></li>
                     </ul>
 
 
@@ -137,7 +138,7 @@ $stmt->close();
               <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a id="page2link" href="#">Add Worker</a></li>
-                            <li><a href="#">Update worker</a></li>
+                            <li><a id="page2link1" href='Update_worker.php'>Update worker</a></li>
                         </ul>
 
 
@@ -146,7 +147,7 @@ $stmt->close();
               <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a id="page3link" href="#">Add member</a></li>
-                                <li><a href="#">Update member</a></li>
+                                <li><a id="page3link1" href='Update_mem.php'>Update member</a></li>
                             </ul>
 
 
@@ -154,20 +155,27 @@ $stmt->close();
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Notification
               <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Notice Forum</a></li>
-                                    <li><a href="#">Member Applicance</a></li>
-                                    <li><a href="#">CV </a></li>
+                                    <li><a href="noticeboard.php">Notice Forum</a></li>
+                                    <li><a id="page4link" href="#">Member Request</a></li>
+                                   
                                 </ul>
 
                                 <li class="dropdown">
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Donations
               <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#">Total Donation</a></li>
-                                        <li><a href="#">Donar List</a></li>
+                                        
+                                        <li><a href="donerlist.php">Donar List</a></li>
                                     </ul>
-
-
+                                    
+                                    <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Admin Accounts
+              <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="registration.html">Create Admin</a></li>
+                                        <li><a href="admin_accounts.php">Admin List and Update</a></li>
+                                        <li><a href="user_accounts.php">Users List</a></li>
+                                    </ul>    
 
                                     <li><a href='loggout.php'>Exit</a></li>
             </ul>
@@ -191,7 +199,14 @@ $stmt->close();
         });
         $(page3link).bind("click", function() {
           $("#content").load("Admin_Add_Member.php");
-        });  
+        }); 
+        $(page2link1).bind("click", function() {
+          $("#content").load("Update_workerinfo.php");
+        });
+        $(page4link).bind("click", function() {
+          $("#content").load("admin_view_notice.php");
+        });
+            
     });
     function w3_open() {
       document.getElementById("mySidebar").style.display = "block";
