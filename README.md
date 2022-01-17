@@ -27,6 +27,6 @@ Head librarian who controls the libraries overall everything.
 # Worker:
 Job like managing less important part like borrowing books, managing book etc
 # Member:
-Normal library member who uses library regi=ularly.
+Normal library member who uses library regiularly.
 
 
