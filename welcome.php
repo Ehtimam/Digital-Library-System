@@ -1,4 +1,3 @@
-
 <?php
 
 session_start();
@@ -28,9 +27,9 @@ $stmt->close();
 		
 		<title>Home Page</title>
 		<style>
-			table,th,td {
+			
+		table,th,td {
 		border:1px solid black;
-		
 	}
 	body{background-color:cornsilk}
 	</style>
