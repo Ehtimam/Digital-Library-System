@@ -12,12 +12,17 @@ if (mysqli_connect_errno()) {
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 
-$stmt = $db->prepare('SELECT pass, email, phone FROM reg WHERE name = ?');
+$stmt = $db->prepare('SELECT pass, email, phone FROM user WHERE name = ?');
 $stmt->bind_param('s', $_SESSION['name']);
 $stmt->execute();
 $stmt->bind_result($pass, $email, $phone);
 $stmt->fetch();
 $stmt->close();
+
+
+
+
+
 ?>
 
 
@@ -28,10 +33,13 @@ $stmt->close();
 
     <title> Digital Library</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -59,20 +67,34 @@ $stmt->close();
            
             border-bottom: 1px solid #131210;
         }
+        table,th,td {
+	          	font-size:15px;
+	          }
+        #content{
+              height: 1000px;
+            }
+        #mySidebar{
+              width: 300px;
+              background-color: #eef3ec;
+              
+              
+
+            }
     </style>
 </head>
 
 <body>
 
     <h1>Digital library</h1>
-    <h5>Welcome User <?=$_SESSION['name']?></h5>
+
     <div class="search" align="right">
         <form>
             <input type="text" name="search" id="search" placeholder="search">
             <input type="submit" value="Go" id="go">
 
         </form>
-    </div>
+
+       
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -103,35 +125,91 @@ $stmt->close();
             <span class="sr-only">Next</span>
         </a>
     </div>
-    <div class="tab">
-        <ul class="nav nav-tabs">
-            <li class="active"><a id="page1Link" href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-            <li><a id="page2Link" href="membership.html">Become a member</a></li>
-            <li><a href="#">Read a book</a></li>
-            <li><a href="#">Apply for book</a></li>
-            <li><a href="#">Donate</a></li>
-            <li><a href="#">Notification</a></li>
-            <li><a href="#">Complain box</a></li>
-            <li><a href='loggout.php'>Exit</a></li>
-        </ul>
-        <div>
-            <!-- page 2 message colored in blue -->
-            <!-- in the beginning page2 is not visible (display set to 'none')-->
-            <p id="page2" style="font-size:40px;color:blue;display:none"></p>
+
+     <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
+        
+        <table>
+					<tr>
+						<td><i class="fas fa-user"></i>:</td>
+						<td><?=$_SESSION['name']?></td>
+					</tr>
+					<tr>
+						<td><i class='fas fa-envelope-square'></i>:</td>
+						<td><?=$email?></td>
+					</tr>
+					<tr>
+						<td><i class='fas fa-mobile-alt'></i>:</td>
+						<td><?=$phone?></td>
+					</tr>
+				</table>
+              <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
+        </div>
+
+        <div class="tab">
+            <ul class="nav nav-tabs">
+            <!--<button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>-->
+              
+                <li class="active"><a class="w3-button w3-teal w3-xlarge" onclick="w3_open()" href="#">☰</a></li>
+            
+                
+                <li class="active"><a id="page1Link" href="#">Home</a></li>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Membership
+              <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a id="page2link" href="#">Instruction</a></li>
+                            <li><a id="page2Link" href="membership.html">Become a member</a></li>
+                        </ul>
+
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Books
+              <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a id="page3link" href="searchbooks.php">Search Books</a></li>
+                                <li><a href="readbooks.php">Read a book</a></li>
+                            </ul>
+
+
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Notification
+              <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a id="page4link" href="#">Notice Forum</a></li>
+                                    <li><a href="user_request.php">Request box</a></li>
+                                    
+                                </ul>
+
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Donations
+              <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="user_doner.php"> Donation</a></li>
+                                        
+                                    </ul>
+                                    
+                                <li class="dropdown">    
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Update AC
+              <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                    <li><a id="page5link" href="#">Account</a></li>
+                                    </ul>    
+
+                                <li><a href='loggout.php'>Exit</a></li>
+            </ul>
 
         </div>
-        <div>
-            <!-- page 1 message colored in red -->
-            <p id="page1" style="font-size:20px;color:rgb(0, 0, 0)">This is Digital Library. A multifuctional webpage that helps you <br> learn more about this library and its collection.<br> You need to Become a library member in order to use this library.<br> Becomeing a member will help you in a lot of
-                ways. First you can borrow any kinds of book you want.<br> There are certain books that are authorized be library so with out a certain degree of membership you cannot access those book.<br> Also you can apply for a book that is currenty
-                in the hand of an another member. Your applicance will be registerd.<br>
-                <h3> How to become a member: <br> 1. Head to the become a member site.<br> 2. Fillout the form with valid information.<br> 3. Enter a picture of your in the photo area.<br> 4. Finally wait for an confirmation email.<br>
-                </h3>
-                Thanks for being with us and also please kindly donate money monthly 5 taka as a membership right.
+        <div id="content" onclick="w3_close()">
 
-
-            </p>
         </div>
+
+       
+
+
+
+        </div>
+        
 
 
     </div>
@@ -143,20 +221,27 @@ $stmt->close();
     // make sure that the code executes only after the document's
     // DOM has been loaded into the browser.
     $(document).ready(function() {
-        // when page1Link link is clicked, page1 shows,
-        // page2 hides
-        $(page1Link).bind("click", function() {
-            $(page1).show();
-            $(page2).hide();
+        $(page2link).bind("click", function() {
+          $("#content").load("instruction.html");
         });
+        $(page4link).bind("click", function() {
+          $("#content").load("user_view_notice.php");
+        });
+        $(page5link).bind("click", function() {
+          $("#content").load("update_user_account.php");
+        });
+     
+          
+  });
+    function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+}
 
-        // when page2Link link is clicked, page2 shows,
-        // page1 hides
-        $(page2Link).bind("click", function() {
-            $(page1).hide();
-            $(page2).show();
-        });
-    });
+function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+}
+
+
 </script>
 
 </html>

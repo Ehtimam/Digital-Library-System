@@ -1,3 +1,46 @@
+<?php
+
+session_start();
+
+$db = mysqli_connect('localhost','root','','eht');
+if ( mysqli_connect_errno() ) {
+	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
+}
+if (isset($_POST['add'])) {
+    $id = $_POST['id'];
+    $name = $_POST['book'];
+	$writer = $_POST['writer'];
+	$publisher = $_POST['publisher'];
+	$release = $_POST['release'];
+    $page = $_POST['page'];
+    $lang = $_POST['language'];
+    $pdf = $_FILES['pdf']['name'];
+
+    $pdf_type=$_FILES['pdf']['type'];
+    $pdf_size=$_FILES['pdf']['size'];
+    $pdf_tem_loc=$_FILES['pdf']['tmp_name'];
+    $pdf_store="pdf/".$pdf;
+
+    move_uploaded_file($pdf_tem_loc,$pdf_store);
+
+
+	$sql = "INSERT INTO `book` (`id`,`name`, `writer`, `publisher`, `date`, `page`, `language`,`pdf`) VALUES ('$id','$name', '$writer', '$publisher', '$release','$page','$lang','$pdf')";
+	
+	$result = mysqli_query($db, $sql);
+
+    if($result){
+		echo "You have Succesfully inserted.";
+	} else {
+		echo "Oops! Something went wrong.";
+	}
+}
+
+
+
+?>
+
+
+
 <html>
 <title>
     Book field
@@ -14,8 +57,8 @@
         }
         
         body {
-            background-color: rgb(92, 184, 161);
-            padding-left: 80px;
+            background-color: #eef3ec;
+           
         }
         
         table,
@@ -46,9 +89,10 @@
 
 <body>
     <div class="book">
-        <form>
+        <form action="input_bookfield.php" method="post" enctype="multipart/form-data">
             <table>
                 <tr>
+                    <td style="padding-left: 60px;">ID</td>
                     <td style="padding-left: 60px;">Name</td>
                     <td style="padding-left: 60px;">writer</td>
                     <td style="padding-left: 60px;">Publisher</td>
@@ -58,6 +102,25 @@
                     <td style="padding-left: 30px;">PDF</td>
                 </tr>
                 <tr>
+                    <td><input type="text" name="id" required></td>
+                    <td><input type="text" name="book" required></td>
+                    <td><input type="text" name="writer" required></td>
+                    <td><input type="text" name="publisher" required></td>
+                    <td><input type="date" name="release" required></td>
+                    <td><input type="number" name="page"></td>
+                    <td><input type="text" name="language"></td>
+                    <td><input type="file" name="pdf"></td>
+                </tr>
+               <!--<tr>
+                    <td><input type="text" name="book" required></td>
+                    <td><input type="text" name="writer" required></td>
+                    <td><input type="text" name="publisher" required></td>
+                    <td><input type="date" name="release" required></td>
+                    <td><input type="number" name="page"></td>
+                    <td><input type="text" name="language"></td>
+                    <td><input type="file" name="pdf"></td>
+                </tr>
+                 <tr>
                     <td><input type="text" name="book" required></td>
                     <td><input type="text" name="writer" required></td>
                     <td><input type="text" name="publisher" required></td>
@@ -182,29 +245,12 @@
                     <td><input type="number" name="page"></td>
                     <td><input type="text" name="language"></td>
                     <td><input type="file" name="pdf"></td>
-                </tr>
-                <tr>
-                    <td><input type="text" name="book" required></td>
-                    <td><input type="text" name="writer" required></td>
-                    <td><input type="text" name="publisher" required></td>
-                    <td><input type="date" name="release" required></td>
-                    <td><input type="number" name="page"></td>
-                    <td><input type="text" name="language"></td>
-                    <td><input type="file" name="pdf"></td>
-                </tr>
-                <tr>
-                    <td><input type="text" name="book" required></td>
-                    <td><input type="text" name="writer" required></td>
-                    <td><input type="text" name="publisher" required></td>
-                    <td><input type="date" name="release" required></td>
-                    <td><input type="number" name="page"></td>
-                    <td><input type="text" name="language"></td>
-                    <td><input type="file" name="pdf"></td>
-                </tr>
+                </tr>-->
             </table>
             <div id="button">
-                <input type="submit" name="add">
-                <input type="submit" name="cancel">
+                <input type="submit" name="Back" value="Back">
+                <input type="submit" name="add" value="Upload">
+                
             </div>
 
         </form>

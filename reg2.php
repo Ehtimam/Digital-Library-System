@@ -15,7 +15,7 @@
 
 
 	
-	$sql = "INSERT INTO `reg` (`name`, `email`, `phone`, `pass`) VALUES ('$name', '$email', '$phone', '$pass')";
+	$sql = "INSERT INTO `user` (`name`, `email`, `phone`, `pass`) VALUES ('$name', '$email', '$phone', '$pass')";
 	
 	$result = mysqli_query($db, $sql);
 	
@@ -36,7 +36,7 @@
 
 <body align=center> 
 	
-	<a href="login.html"><i class="fas fa-sign-out-alt"></i>Login</a>
+	<a href="login2.html"><i class="fas fa-sign-out-alt"></i>Login</a>
 </body>	
 </html>
 

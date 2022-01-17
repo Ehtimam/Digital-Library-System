@@ -9,7 +9,7 @@ if ( !isset($_POST['uname'], $_POST['pass']) ) {
 	exit('Please fill both the username and password fields!');
 }
 
-if ($stmt = $db->prepare('SELECT pass FROM reg WHERE name = ?')) {
+if ($stmt = $db->prepare('SELECT pass FROM user WHERE name = ?')) {
 	$stmt->bind_param('s', $_POST['uname']);
 	$stmt->execute();
 	$stmt->store_result();

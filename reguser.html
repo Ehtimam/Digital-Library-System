@@ -2,7 +2,7 @@
 
 <head>
 
-    <title> Login </title>
+    <title> Form Validation </title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <style>
         * {
@@ -15,7 +15,7 @@
         
         h1 {
             text-align: center;
-            color: #17243a;
+            color: #202f49;
             font-size: 24px;
             padding: 20px 0 20px 0;
             border-bottom: 1px solid #e9e17a;
@@ -25,29 +25,29 @@
             background-color: #eef3ec;
         }
         
-        .login {
+        .reg {
             width: 400px;
             background-color: #ffffff;
             box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
             margin: 100px auto;
         }
         
-        .login h1 {
+        .reg h3 {
             text-align: center;
-            color: #5b6574;
+            color: #0e1116;
             font-size: 24px;
             padding: 20px 0 20px 0;
-            border-bottom: 1px solid #dee0e4;
+            border-bottom: 1px solid #bde701;
         }
         
-        .login form {
+        .reg form {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             padding-top: 20px;
         }
         
-        .login form label {
+        .reg form label {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -57,8 +57,10 @@
             color: #fcfafa;
         }
         
-        .login form input[type="password"],
-        .login form input[type="text"] {
+        .reg form input[type="password"],
+        .reg form input[type="text"],
+        .reg form input[type="email"],
+        .reg form input[type="number"] {
             width: 310px;
             height: 50px;
             border: 1px solid #dee0e4;
@@ -66,7 +68,7 @@
             padding: 0 15px;
         }
         
-        .login form input[type="submit"] {
+        .reg form input[type="submit"] {
             width: 100%;
             padding: 15px;
             margin-top: 20px;
@@ -78,7 +80,7 @@
             transition: background-color 0.2s;
         }
         
-        .login form input[type="submit"]:hover {
+        .reg form input[type="submit"]:hover {
             background-color: #2868c7;
             transition: background-color 0.2s;
         }
@@ -89,11 +91,11 @@
 </head>
 
 <body>
-    <h1> Digital Library </h1>
+    <h1>Digital Library</h1>
+    <div class="reg">
+        <h3> Welcome </h3>
+        <form name="myform" align="center" method="POST" action='reg2.php' onsubmit="return checkForm()">
 
-    <div class="login">
-        <h1>Login</h1>
-        <form name="myform" align="center" method="POST" action='log.php' onsubmit="return checkForm()">
             <label for="username">
                 <i class="fas fa-user"> </i>
             </label>
@@ -102,16 +104,38 @@
                 <i class='fas fa-lock '> </i>
             </label>
             <input type="password" name="pass" placeholder="Password" id="password" required>
-            <input type="submit" value="Login">
-            <a href="registration.html"><i class="fas fa-sign-out-alt"></i>register</a>
+            <label for="phone">
+                <i class='fas fa-mobile-alt'> </i>
+            </label>
+            <input type="number" name="mobile" placeholder="Phone No" id="phone" required>
+            <label for="email">
+                <i class='fas fa-envelope-square'> </i>
+            </label>
+            <input type="email" name="uemail" placeholder="Email" id="email" required>
+            <input type="submit" name="submit" value="sign in">
+
 
         </form>
     </div>
+
+    <!-- <form name="myform" align="center" method="POST" action='reg.php' onsubmit="return checkForm()">
+        <h3> Welcome </h3>
+        <label> Name     </label><input type="text" name="uname" placeholder="username"></br>
+        <label> Password </label><input type="password" name="pass" placeholder="password"></br>
+        <label> Modile </label><input type="number" name="mobile" placeholder="Phone No"></br>
+        <label> Email </label><input type="email" name="uemail" placeholder="email"></br>
+        </br>
+        <input type="submit" name="submit" value="sign_in">
+    </form>-->
     <script>
         function checkForm() {
             let x = document.forms["myform"]["uname"].value;
 
             let y = document.forms["myform"]["pass"].value;
+
+            let z = document.forms["myform"]["mobile"].value;
+
+            let w = document.forms["myform"]["uemail"].value;
 
             if (x == "") {
                 alert("Please Fill The Name Field!");
@@ -119,10 +143,17 @@
             } else if (y == "") {
                 alert("Please Fill The Password Field!");
                 return false;
+            } else if (z == "") {
+                alert("Please Fill The Password Field!");
+                return false;
+            } else if (w == "") {
+                alert("Please Fill The Password Field!");
+                return false;
             }
             return true;
         }
     </script>
+
 </body>
 
 </html>
